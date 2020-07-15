@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 import "./styles.css";
-import API from "../utils/API";
+import API from "./utils/API";
 
 export default function App() {
   return (
@@ -69,7 +69,7 @@ class CountryList extends Component {
       <section>
         <h2>Countries List</h2>
         {countries.map(country => {
-          return <CountryData Details={{ ...country }} />;
+          return <CountryData countryDetails={{ country }} />;
         })}
       </section>
     );
@@ -77,12 +77,13 @@ class CountryList extends Component {
 }
 
 const CountryData = props => {
+  const { country: country_code, cases, deaths, recovered} = this.props.countryDetails;
   return (
-    <div key={`country_${props.Details.country}`}>
-      <h3>country code : {props.Details.country}</h3>
-      <p>cases : {props.Details.cases}</p>
-      <p>deaths : {props.Details.deaths}</p>
-      <p>recovered : {props.Details.recovered}</p>
+    <div key={`country_${country_code}`}>
+      <h3>country code : {country_code}</h3>
+      <p>cases : {cases}</p>
+      <p>deaths : {deaths}</p>
+      <p>recovered : {recovered}</p>
     </div>
   );
 };
