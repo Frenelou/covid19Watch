@@ -2,8 +2,7 @@ import React, { Component } from "react";
 
 import "./styles.css";
 import API from "./utils/API";
-
-const { getCode, getName } = require('country-list');
+import { getCode, getName } from "country-list";
 
 export default function App() {
   return (
