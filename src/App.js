@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 import "./styles.css";
 import API from "./utils/API";
+import { getName } from "country-list";
 
 export default function App() {
   return (
@@ -77,7 +78,7 @@ class CountryList extends Component {
 const CountryData = props => {
   const { country, cases, deaths, recovered } = props.countryDetails;
   return <div>
-    <h3>country code : {country}</h3>
+    <h3>{getName(country)}</h3>
     <p><b>cases</b> : {cases}</p>
     <p><b>deaths</b> : {deaths}</p>
     <p><b>recovered</b> : {recovered}</p>
