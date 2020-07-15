@@ -68,22 +68,19 @@ class CountryList extends Component {
     return (
       <section>
         <h2>Countries List</h2>
-        {countries.map(country => {
-          return <CountryData countryDetails={{ country }} />;
-        })}
+        {countries.map(country => <CountryData key={`country_${country.country}`} countryDetails={country} />)}
       </section>
     );
   }
 }
 
 const CountryData = props => {
-  const { country: country_code, cases, deaths, recovered} = this.props.countryDetails;
-  return (
-    <div key={`country_${country_code}`}>
-      <h3>country code : {country_code}</h3>
-      <p>cases : {cases}</p>
-      <p>deaths : {deaths}</p>
-      <p>recovered : {recovered}</p>
-    </div>
-  );
+  const { country, cases, deaths, recovered } = props.countryDetails;
+  return <div>
+    <h3>country code : {country}</h3>
+    <p><b>cases</b> : {cases}</p>
+    <p><b>deaths</b> : {deaths}</p>
+    <p><b>recovered</b> : {recovered}</p>
+    <br />
+  </div>;
 };
