@@ -2,3 +2,8 @@
   font-family: sans-serif;
   text-align: center;
 }
+
+.ComboBoxformControl {
+  width: 30%;
+  margin-bottom: 30px !important;
+}

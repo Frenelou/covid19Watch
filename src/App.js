@@ -2,7 +2,10 @@ import React, { Component } from "react";
 
 import "./styles.css";
 import API from "./utils/API";
-import { getCode, getName } from "country-list";
+import CountrySelector from "./Components/CountrySelector";
+
+import CountryData from "./Components/CountryData";
+
 
 export default function App() {
   return (
@@ -10,7 +13,11 @@ export default function App() {
       <h1>Covid19 Watch</h1>
       <WorldData />
       <br />
-      <CountryList />
+      <h2>Select Country</h2>
+      <CountrySelector /> 
+      <br />
+
+      {/* <CountryList /> */}
     </div>
   );
 }
@@ -69,32 +76,129 @@ class CountryList extends Component {
     return (
       <section>
         <h2>Countries List</h2>
-        {countries.map(country => (
-          <CountryData
-            key={`country_${country.country}`}
-            countryDetails={country}
-          />
-        ))}
+        {countries.map(country => <CountryData key={`country_${country.country}`} countryDetails={country} />)}
       </section>
     );
   }
 }
 
-const CountryData = props => {
-  const { country, cases, deaths, recovered } = props.countryDetails;
-  return (
-    <div>
-      <h3>{getName(country)}</h3>
-      <p>
-        <b>cases</b> : {cases}
-      </p>
-      <p>
-        <b>deaths</b> : {deaths}
-      </p>
-      <p>
-        <b>recovered</b> : {recovered}
-      </p>
-      <br />
-    </div>
-  );
-};
+// class CountryList extends Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//       countries: []
+//     };
+//   }
+//   async componentDidMount() {
+//     try {
+//       const countryList = await API.get("/status/");
+//       this.setState({
+//         ...this.state,
+//         countries: countryList.data
+//       });
+//     } catch (e) {
+//       console.log("Error", e);
+//     }
+//   }
+//   render() {
+//     const { countries } = this.state;
+//     return (
+//       <section>
+//         <h2>Countries List</h2>
+//         {countries.map(country => (
+//           <CountryData
+//             key={`country_${country.country}`}
+//             countryDetails={country}
+//           />
+//         ))}
+//       </section>
+//     );
+//   }
+// }
+
+// const CountryData = props => {
+//   const { country, cases, deaths, recovered } = props.countryDetails;
+//   return (
+//     <div>
+//       <h3>{getName(country)}</h3>
+//       <p>
+//         <b>cases</b> : {cases}
+//       </p>
+//       <p>
+//         <b>deaths</b> : {deaths}
+//       </p>
+//       <p>
+//         <b>recovered</b> : {recovered}
+//       </p>
+//       <br />
+//     </div>
+//   );
+// };
+///Checked for combobox changing
+
+// class CountryList extends Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//       countries: [],
+//       Code: ""
+//     };
+//   }
+
+//   async componentDidMount() {
+//     try {
+//       const countryList = await API.get("/status/");
+//       this.setState({
+//         ...this.state,
+//         countries: countryList.data
+//       });
+//     } catch (e) {
+//       console.log("Error", e);
+//     }
+//   }
+//   handleCountryChange =  country => {
+//     console.log(this.state);
+//     this.setState({ Code: country }, () => {
+//       console.log(this.state.Code); // Updated value here
+//     });
+//   };
+
+//   render() {
+//     const code = this.state.Code;
+//     return (
+//       <div >
+//         <CountrySelector handleCountryChange={this.handleChange} />
+//         <p>{code} </p>
+//       </div>
+//     );
+//   }
+// }
+
+
+
+
+
+
+//We need country wise total affected cases, recovered and Deaths
+//We will global map on clicking on each country in the map we get the details
+//We will have a combobox tp select the country
+//show the details accordingly
+
+/* The APi returns json data of all countries in this format
+{
+  "country" : "NA",
+  "last_update" : "2020-07-15T12:34:59",
+  "cases" : 864,
+  "deaths" : 2,
+  "recovered" : 29
+}*/
+// TODO
+/*
+- Create a function to retrieve the data
+- Display world data (total cases, deaths, recovered)
+- Display a list of data for countries
+- Add a filter to see data for only specific country
+*/
+
+
+//// We have a list dotors
